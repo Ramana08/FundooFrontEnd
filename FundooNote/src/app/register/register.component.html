@@ -1,0 +1,42 @@
+<div class="center">
+<mat-card class="example-card">
+    <mat-card-header>
+    <mat-card-title>Register</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+    <form class="example-form" [formGroup]="registerForm" >
+    <table class="example-full-width" cellspacing="0">
+    <tr>
+    <td>
+    <mat-form-field class="example-full-width">
+    <input matInput placeholder="Username" formControlName="name" [(ngModel)]="user.name" name="name" required>
+    </mat-form-field>
+    </td>
+    </tr>
+    <tr>
+    <td><mat-form-field class="example-full-width">
+    <input matInput placeholder="email" formControlName="email" [(ngModel)]="user.email"type="email" name="email" required>
+    </mat-form-field></td>
+    </tr>
+    <tr>
+    <td>
+    <mat-form-field class="example-full-width">
+    <input matInput placeholder="Password contains 6 to 10 letters" formControlName="password" [(ngModel)]="user.password"type="password" name="password" required>
+    </mat-form-field>
+    
+    </td>
+    </tr>
+    <tr>
+    <td><mat-form-field class="example-full-width">
+    <input matInput placeholder="mobileNumber" formControlName="phoneNumber" [(ngModel)]="user.phoneNumber"type="text" name="phoneNumber" required>
+    </mat-form-field></td>
+    </tr>
+    </table>
+    </form>
+    <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+    </mat-card-content>
+    <mat-card-actions>
+    <button mat-raised-button type="submit" (click)="register()" color="primary" [disabled]="!registerForm.valid">register</button>
+    </mat-card-actions>
+    </mat-card>
+  </div>

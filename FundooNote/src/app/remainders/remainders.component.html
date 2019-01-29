@@ -1,0 +1,117 @@
+<div class="center">
+  
+    <mat-card *ngIf=!barshow (click)="fullCardShow()" class="noteCard" style="min-width: 300px; margin:0px">
+        Take a note ...
+<!-- 
+        <button mat-icon-button (click)="addNewList()" matTooltip="New List" style="left: 6.3cm">
+            <mat-icon aria-label="Example icon-button with a heart icon">
+                check_box
+
+            </mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Drawing is not available" style="left: 6.5cm" var=showBrush>
+              <mat-icon aria-label="Example icon-button with a heart icon">
+                brush
+              </mat-icon>
+            </button>
+          <button mat-icon-button (click)="addImage()" matTooltip="New note with image" style="left: 6.6cm">
+              <mat-icon aria-label="Example icon-button with a heart icon">
+                image
+              </mat-icon>
+            </button> -->
+      </mat-card>
+      <mat-card *ngIf=barshow>
+
+  <mat-card-title>
+    <!-- <input matInput class="takeanote" [(ngModel)]="note.title" placeholder="title" id="title"  style="margin-left:0px;" > </mat-card-title> -->
+    
+    <textarea class="takeanote" placeholder="Title" [(ngModel)]="note.title" style="margin-left:0px;"
+    cdkTextareaAutosize
+               #autosize="cdkTextareaAutosize"
+               cdkAutosizeMinRows="0"
+               cdkAutosizeMaxRows="40"
+    ></textarea>
+  </mat-card-title>
+
+  <mat-card-subtitle>
+    <!-- <input matInput class="inputclass" [(ngModel)]="note.description" placeholder="take a note...." id="description" required> -->
+
+    <!-- <div aria-placeholder="take a note...." contenteditable="true" role="textbox" class="takeanote" >
+    </div> -->
+         
+               <textarea class="takeNote" placeholder="Take a note..." [(ngModel)]="note.description" style="margin-left:0px;" 
+               cdkTextareaAutosize
+               #autosize="cdkTextareaAutosize"
+               cdkAutosizeMinRows="0"
+               cdkAutosizeMaxRows="40"
+               >
+               </textarea>
+      
+  </mat-card-subtitle>
+
+  <mat-card-footer>
+    <div fxLayout="row">
+      <button mat-icon-button  matTooltip="Remind me">
+        <mat-icon aria-label="Example icon-button with a heart icon">
+          add_alert
+        </mat-icon>
+      </button>
+      <button mat-icon-button  matTooltip="collaborator">
+        <mat-icon aria-label="Example icon-button with a heart icon">
+          person_add
+        </mat-icon>
+      </button>
+      <button mat-icon-button  matTooltip="Change color">
+        <mat-icon aria-label="Example icon-button with a heart icon">
+          palette
+        </mat-icon>
+      </button>
+      <button mat-icon-button  matTooltip="Add Image">
+        <mat-icon aria-label="Example icon-button with a heart icon">
+          add_photo_alternate
+        </mat-icon>
+      </button>
+      <button mat-icon-button  matTooltip="Archive">
+        <mat-icon aria-label="Example icon-button with a heart icon">
+          archive
+        </mat-icon>
+      </button>
+      <button mat-icon-button  matTooltip="More" [matMenuTriggerFor]="settingsForHeader">
+        <mat-icon aria-label="Example icon-button with a heart icon">
+          more_vert
+        </mat-icon>
+
+      </button>
+      <button mat-button (click)="close()" style="left:5cm">Close</button>
+
+    </div>
+    <div>
+
+    </div>
+
+  </mat-card-footer>
+  <mat-menu #settingsForHeader="matMenu">
+
+    <button mat-menu-item (click)="deleteNote()">Delete Note</button>
+    <button mat-menu-item (click)="addLabel()">Add label</button>
+    <button mat-menu-item (click)="addDrawing()" disabled=true>Add Drawing</button>
+    <button mat-menu-item (click)="makeCopy()">Make a Copy</button>
+    <button mat-menu-item (click)="showCheckboxes()">Show Checkboxes</button>
+    <button mat-menu-item (click)="copyToGoogleDocs()">Copy to Google docs</button>
+
+
+  </mat-menu>
+</mat-card>
+<div *ngIf=showIcon>
+
+<div class="NotificationIcon">
+<mat-icon  style="font-size: 90px" >lightbulb_outline</mat-icon>
+</div>
+<div class="textSize">
+<h1 > Notes with upcoming reminders appear here
+
+  </h1>
+</div>
+
+</div>
+</div>

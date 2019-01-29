@@ -1,0 +1,96 @@
+.center{
+  margin-top: 4%;
+  margin-bottom: auto;
+  margin-left:auto;
+  margin-right: auto;
+  width: 58%; 
+}
+  .noteCard
+  {
+    border: 1px;
+padding: 10px;
+border-radius: 8px;
+box-shadow: 2px 3px 3px 3px #d8d8d8;
+  }
+
+    
+  .inputclass{
+  
+  outline: none;
+  outline-style: none;
+  box-shadow: none;
+  border-color: transparent;
+  border: solid 0px transparent;
+  }
+  .takeNote{
+    resize: unset;
+    border:none;
+   outline: none;
+   outline-style: none;
+   box-shadow: none;
+   border-color: transparent;
+   border: solid 0px transparent;
+   scale:none;
+   max-height: 400px;
+   overflow-y: auto; 
+   width: 100%
+  }
+  
+  .takeanote{
+    resize: unset;
+ border:none;
+outline: none;
+outline-style: none;
+box-shadow: none;
+border-color: transparent;
+border: solid 0px transparent;
+scale:none;
+max-height: 400px;
+overflow-y: auto; 
+width: 100%
+}
+
+  .cardresize{
+  
+  min-width: 170px;
+  min-height:100px;
+  }
+  
+label, input {
+  display: block;
+  }
+  
+  label {
+  margin-bottom: 10px;
+  } 
+  .notification
+  {
+    margin-top:12%;
+    margin-bottom: auto;
+    margin-left:auto;
+    margin-right: auto;
+    width: 13%;
+    
+  }
+.NotificationIcon
+{
+
+margin-top: 30%;
+margin-bottom: auto;
+margin-left:auto;
+margin-right: auto;
+width: 13%; 
+color:rgb(207,207,212)
+}
+.textSize
+{
+
+margin-top: 5%;
+margin-bottom: auto;
+margin-left:20%;
+margin-right: auto;
+width: 100%; 
+font-size: 10px;
+color:rgb(207,207,212)
+
+}
