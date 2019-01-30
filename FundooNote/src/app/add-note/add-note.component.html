@@ -62,11 +62,23 @@
             person_add
           </mat-icon>
         </button>
-        <button mat-icon-button  matTooltip="Change color">
+        <button mat-icon-button [matMenuTriggerFor]="menucolor"> <!--*ngFor="let note of allnotes" -->
           <mat-icon aria-label="Example icon-button with a heart icon">
-            palette
+             palette
           </mat-icon>
-        </button>
+       </button>
+         <mat-menu #menucolor="matMenu">
+           <mat-list>
+              <div *ngFor= "let colorx of colors">
+                 <span *ngFor="let singlecolor of colorx">
+                    <button mat-icon-button (click)="colorchange(singlecolor)">
+                    <mat-icon  [style.color]="singlecolor">fiber_manual_record</mat-icon>
+                       <!-- <i style="color:${{singlecolor}}">{{singlecolor}} </i> -->
+                    </button>
+                 </span>
+           </div>
+           </mat-list>
+        </mat-menu>  
         <button mat-icon-button  matTooltip="Add Image">
           <mat-icon aria-label="Example icon-button with a heart icon">
             add_photo_alternate
@@ -127,101 +139,10 @@
 
 
  
-<div class="noteBarCenter">
-    <mat-card  *ngIf="noteBar">
+<div *ngIf=noteBar>
+<app-note-bar *ngFor="let note of noteBarValue" [noteDetail] = note ></app-note-bar>
+</div>
 
-<mat-card-title>
-  <!-- <input matInput class="takeanote" [(ngModel)]="note.title" placeholder="title" id="title"  style="margin-left:0px;" > </mat-card-title> -->
-<!--   
-  <textarea class="takeanote" placeholder="Title" [(ngModel)]="note.title" value="hi" style="margin-left:0px;" matInput
-  cdkTextareaAutosize
-             #autosize="cdkTextareaAutosize"
-             cdkAutosizeMinRows="0"
-             cdkAutosizeMaxRows="40"
-  ></textarea> -->
-  <p>
-  {{noteBarValue.title}}
-</p>
-</mat-card-title>
-
-<mat-card-subtitle>
-  <!-- <input matInput class="inputclass" [(ngModel)]="note.description" placeholder="take a note...." id="description" required> -->
-
-  <!-- <div aria-placeholder="take a note...." contenteditable="true" role="textbox" class="takeanote" >
-  </div> -->
-       
-             <!-- <textarea class="takeNote" placeholder="Take a note..." [(ngModel)]="note.description" style="margin-left:0px;" 
-             cdkTextareaAutosize
-             #autosize="cdkTextareaAutosize"
-             cdkAutosizeMinRows="0"
-             cdkAutosizeMaxRows="40"
-             >
-             </textarea> -->
-             <p>
-               {{noteBarValue.description}}
-             </p>
-    
-</mat-card-subtitle>
-
-<mat-card-footer>
-    <div fxLayout="row">
-      <button mat-icon-button  matTooltip="Remind me"[matMenuTriggerFor]="settingsForRemindMe">
-        <mat-icon aria-label="Example icon-button with a heart icon">
-          add_alert
-        </mat-icon>
-      </button>
-
-      <button mat-icon-button  matTooltip="collaborator">
-        <mat-icon aria-label="Example icon-button with a heart icon">
-          person_add
-        </mat-icon>
-      </button>
-      <button mat-icon-button  matTooltip="Change color">
-        <mat-icon aria-label="Example icon-button with a heart icon">
-          palette
-        </mat-icon>
-      </button>
-      <button mat-icon-button  matTooltip="Add Image">
-        <mat-icon aria-label="Example icon-button with a heart icon">
-          add_photo_alternate
-        </mat-icon>
-      </button>
-      <button mat-icon-button  matTooltip="Archive">
-        <mat-icon aria-label="Example icon-button with a heart icon">
-          archive
-        </mat-icon>
-      </button>
-      <button mat-icon-button  matTooltip="More" [matMenuTriggerFor]="settingsForHeader">
-        <mat-icon aria-label="Example icon-button with a heart icon">
-          more_vert
-        </mat-icon>
-
-      </button>
-      <!-- <button mat-button (click)="close()" style="left:10px">Close</button> -->
-
-    </div>
-   
-
-  </mat-card-footer>
-  <mat-menu #settingsForHeader="matMenu">
-           
-    <button mat-menu-item (click)="addLabel()">Add label</button>
-    <button mat-menu-item (click)="addDrawing()" disabled=true>Add Drawing</button>
-    <button mat-menu-item (click)="showCheckboxes()">Show Checkboxes</button>
-   
-
-  </mat-menu>
-
-  <mat-menu #settingsForRemindMe="matMenu">
-    Remainder:       
-    <button mat-menu-item (click)="laterToday()">Later Today</button>
-    <button mat-menu-item (click)="Tomorrow">Tomorrow</button>
-    <button mat-menu-item (click)="nextWeek()">Next Week</button>
-    <button mat-menu-item (click)="home()">Home</button>
-    <button mat-menu-item (click)="pickDateAndTime()">Pick Date & Time</button>
-    <button mat-menu-item (click)="pickPlace()">Pick Place</button>
-  </mat-menu>
-</mat-card>
 <!-- <mat-drawer-content>
 
     <router-outlet></router-outlet>

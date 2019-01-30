@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NoteModel } from '../models/note.model';
+import { NoteserviceService } from '../noteservice.service';
+
 
 @Component({
   selector: 'app-note-bar',
@@ -8,10 +10,23 @@ import { NoteModel } from '../models/note.model';
 })
 export class NoteBarComponent implements OnInit {
 
-  note : NoteModel =new  NoteModel();
-  constructor() { }
+  noteBarValue : NoteModel =new  NoteModel();
+  noteBar : boolean = false;
+  constructor(private noteService : NoteserviceService) { }
 
-  ngOnInit() {
+  @Input() noteDetail : NoteModel;
+  ngOnInit() 
+  {
+    // this.noteService.getNotes().subscribe(
+    //   response => {
+    //     this.noteBarValue=response;
+    //     console.log(this.noteBarValue)
+    //       if(this.noteBarValue != null)
+    //             this.noteBar=true
+    //    }
+    //  )
+     
   }
+
 
 }

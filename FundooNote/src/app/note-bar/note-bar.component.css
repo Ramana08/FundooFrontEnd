@@ -31,3 +31,11 @@ width: 100%
     margin-right: auto;
     width: 20%; 
   }
+  .noteBarCenter
+{
+  margin-top: 1%;
+  margin-bottom: auto;
+  margin-left:5%;
+  margin-right: auto;
+  width: 25%; 
+}
