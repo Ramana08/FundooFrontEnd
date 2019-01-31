@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
           console.log(response)
           // console.log(response.headers.get('jwtToken'));
           localStorage.setItem('jwtToken', response.headers.get('jwttokenxxx'));
+          
           this.router.navigate(['/dashBoard'])
         }
 

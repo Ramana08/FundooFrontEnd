@@ -25,6 +25,7 @@ import { ResetOtpVerifyComponent } from './reset-otp-verify/reset-otp-verify.com
 import { NoteserviceService } from './noteservice.service';
 import { DialobBoxComponent } from './dialob-box/dialob-box.component';
 import { NoteBarComponent } from './note-bar/note-bar.component';
+import { CardUpdateServiceService } from './card-update-service.service';
 
 // import {MatExpansionModule} from '@angular/material/expansion';
 
@@ -132,7 +133,7 @@ import { NoteBarComponent } from './note-bar/note-bar.component';
     MatButtonModule,
     LayoutModule
   ],
-  providers: [UserserviceService,NoteserviceService],
+  providers: [UserserviceService,NoteserviceService,CardUpdateServiceService],
   bootstrap: [AppComponent],
 entryComponents :[DialobBoxComponent]
 })

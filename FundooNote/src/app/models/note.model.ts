@@ -4,7 +4,7 @@ export class NoteModel
     description: String;
     color: String;
     remainder: String;
-    archive: boolean;
+    archive: number;
     pin: boolean;
     trash: boolean;
     userID:number;

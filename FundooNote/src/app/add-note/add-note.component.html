@@ -84,7 +84,7 @@
             add_photo_alternate
           </mat-icon>
         </button>
-        <button mat-icon-button  matTooltip="Archive">
+        <button mat-icon-button  matTooltip="Archive" (click)=archive()>
           <mat-icon aria-label="Example icon-button with a heart icon">
             archive
           </mat-icon>
@@ -142,6 +142,7 @@
 <div *ngIf=noteBar>
 <app-note-bar *ngFor="let note of noteBarValue" [noteDetail] = note ></app-note-bar>
 </div>
+
 
 <!-- <mat-drawer-content>
 

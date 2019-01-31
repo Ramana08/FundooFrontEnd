@@ -32,7 +32,7 @@ this.notecrud.getAllNotes().subscribe(
   response => {
     this.noteBarValue=response;
     console.log(this.noteBarValue)
-      if(this.noteBarValue != null)
+      if(this.noteBarValue.length!= 0)
       {
             this.noteBar=true
             this.showIcon=false
@@ -67,7 +67,8 @@ this.notecrud.getAllNotes().subscribe(
       //console.log(data.statusMessage,data.statusCode)
       if(data.statusCode== 166)
       {
-        
+        this.ngOnInit();
+
           this.snackBar.open('Note Added Successfully', '', {
             duration: 2000,});
             
@@ -89,7 +90,6 @@ this.notecrud.getAllNotes().subscribe(
   this.noteNewBar=true;
   
   }
-  this.ngOnInit();
  this.note=new NoteModel(); 
 }
 else
@@ -99,5 +99,29 @@ else
 }
 
 }
+archive() : void
+{
+  console.log("archive function");
+  
+  this.barshow=!this.barshow;
+
+this.notecrud.archiveNote(this.note).subscribe(
+ data=> {
+    if(data.statusCode==200)
+    {
+      this.snackBar.open('Note Archive Successfully', '', {
+        duration: 2000,});
+    }
+  },
+      
+    error => {
+     
+        console.log("Error", error);
+    }
+
+   );
+}
+
+
 
 }

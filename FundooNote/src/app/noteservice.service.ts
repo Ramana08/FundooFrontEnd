@@ -57,8 +57,50 @@ ngOnInit()
     console.log("header ",httpOptions2.headers.get('token'));
      console.log('get url',this.userUrl+'getAllNote');
 
-      return this.http.get<NoteModel[]>(this.userUrl+"getAllNote",httpOptions2);     
+      return this.http.get<NoteModel[]>(this.userUrl+"getAllNote",httpOptions2);   
+        
      }
+
+     
+
+     public archiveNote(note : NoteModel) : any{
+      var httpOptions = {
+
+        headers: new HttpHeaders({'Content-Type': 'application/json' ,
+        'token':localStorage.getItem('jwtToken')}
+        )};
+      console.log(this.userUrl+"archiveNote")
+       return this.http.post(this.userUrl+"archiveNote",note,httpOptions)
+     }
+     
+
+
+     public getArchiveNotes() : Observable<NoteModel[]> | any
+     {
+       console.log("local ",localStorage.getItem('jwtToken'))
+       var httpOptions2 = {
+         headers : new HttpHeaders({'token' : localStorage.getItem('jwtToken')
+       
+         })
+       };
+       console.log(this.userUrl+'addNote');
+      
+       console.log("header ",httpOptions2.headers.get('token'));
+        console.log('get url',this.userUrl+'getArchiveNote');
+   
+         return this.http.get<NoteModel[]>(this.userUrl+"getArchiveNote",httpOptions2);     
+        }
+
+
+        public deleteNote(note : NoteModel) : any{
+          var httpOptions = {
+
+            headers: new HttpHeaders({'Content-Type': 'application/json' }
+            )};
+            console.log("ramana");
+            
+           return this.http.delete<NoteModel>(this.userUrl+"deleteNote",httpOptions);
+        }
 }
 
 

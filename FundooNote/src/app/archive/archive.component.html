@@ -1,7 +1,11 @@
-<div class="NotificationIcon">
+<div class="NotificationIcon" *ngIf=showIconAndLetter>
         <mat-icon  style="font-size: 90px" >archive</mat-icon>
-        </div>
         <div class="textSize">
-        <h1 >      Your archived notes appear here
-          </h1>
+          <h1 >      Your archived notes appear here
+            </h1>
+          </div>
         </div>
+       
+        <div *ngIf=showArchiveNoteBar>
+<app-note-bar *ngFor="let note of noteBarValue" [noteDetail] = note ></app-note-bar>
+</div>
