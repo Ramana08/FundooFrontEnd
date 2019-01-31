@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 // import {AuthService} from '../auth.service';
 import { Router } from '@angular/router';
 import { MatDialog, MatSnackBar } from '@angular/material'
-import { LoginModel } from '../models/login.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UserserviceService } from '../user-service.service';
+import { LoginModel } from 'src/app/models/login.model';
+import { UserserviceService } from 'src/app/service/user-service.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +14,7 @@ import { UserserviceService } from '../user-service.service';
 export class LoginComponent implements OnInit {
 
   constructor(private router: Router, private userService: UserserviceService, private snackBar: MatSnackBar, private formBuilder: FormBuilder) { }
-  login: LoginModel = new LoginModel();
+  login: LoginModel= new LoginModel();
   loginForm: FormGroup
   tempEmail: String
   ngOnInit() {

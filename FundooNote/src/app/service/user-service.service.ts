@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { RegisterModel } from './models/register.model';
+import { RegisterModel } from '../models/register.model';
 
 import { HttpHeaders ,HttpClient} from '@angular/common/http';
 import { headersToString } from 'selenium-webdriver/http';
-import { userOtp } from './models/otp.module';
-import { LoginModel } from './models/login.model';
+import { userOtp } from '../models/otp.module';
+import { LoginModel } from '../models/login.model';
 
 
 const httpOptions = {

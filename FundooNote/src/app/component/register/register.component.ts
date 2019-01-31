@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { MatSnackBar} from '@angular/material'
-import { RegisterModel } from '../models/register.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UserserviceService } from '../user-service.service';
+import { RegisterModel } from 'src/app/models/register.model';
+import { UserserviceService } from 'src/app/service/user-service.service';
 // import { UserServiceService } from '../user-service.service';
 
 

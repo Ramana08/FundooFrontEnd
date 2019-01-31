@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NoteModel } from '../models/note.model';
-
+import { NoteModel } from 'src/app/models/note.model';
+ 
 @Component({
   selector: 'app-remainders',
   templateUrl: './remainders.component.html',

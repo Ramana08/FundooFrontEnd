@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NoteModel } from '../models/note.model';
-import { NoteserviceService } from '../noteservice.service';
 import { MatSnackBar } from '@angular/material';
-import { CardUpdateServiceService } from '../card-update-service.service';
+import { CardUpdateServiceService } from 'src/app/service/card-update-service.service';
+import { NoteserviceService } from 'src/app/service/noteservice.service';
+import { NoteModel } from 'src/app/models/note.model';
 
 
 @Component({

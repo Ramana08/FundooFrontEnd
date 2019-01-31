@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { userOtp } from '../models/otp.module';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UserserviceService } from '../user-service.service';
 import { MatSnackBar } from '@angular/material';
+import { userOtp } from 'src/app/models/otp.module';
+import { UserserviceService } from 'src/app/service/user-service.service';
 
 
 @Component({
-  selector: 'app-reset-otp-verify',
-  templateUrl: './reset-otp-verify.component.html',
-  styleUrls: ['./reset-otp-verify.component.css']
+  selector: 'app-otp-verification',
+  templateUrl: './otp-verification.component.html',
+  styleUrls: ['./otp-verification.component.css']
 })
-export class ResetOtpVerifyComponent implements OnInit {
+export class OtpVerificationComponent implements OnInit {
+
   otpUser : userOtp =new userOtp();
   otpForm : FormGroup;
   constructor(private route:Router , private formBuilder : FormBuilder , private userService : UserserviceService, private snackBar : MatSnackBar) { }
@@ -30,12 +31,12 @@ otpSubmit()
 {
   console.log(this.otpUser.otpPassword);
 
-  (this.userService.resetUserOtp(this.otpUser)).subscribe(
+  (this.userService.verifyUser(this.otpUser)).subscribe(
     
     data => { 
       if(data.statusCode== 200)
       {
-          this.snackBar.open('Reset password successfully', 'login', {
+          this.snackBar.open('registerd successfully', 'login', {
             duration: 2000,});
             this.route.navigate(['/login']);
       }
@@ -61,3 +62,4 @@ otpSubmit()
      
 }
 }
+

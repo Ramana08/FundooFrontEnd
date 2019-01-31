@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NoteModel } from '../models/note.model';
-import { NoteserviceService } from '../noteservice.service';
 import { MatSnackBar } from '@angular/material';
 import {Router} from '@angular/router';
+import { NoteModel } from 'src/app/models/note.model';
+import { NoteserviceService } from 'src/app/service/noteservice.service';
 
 
 @Component({

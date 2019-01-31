@@ -3,10 +3,8 @@ import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
-import { UserserviceService } from '../user-service.service';
 import { MatDialog } from '@angular/material';
 import { DialobBoxComponent } from '../dialob-box/dialob-box.component';
-import { NoteserviceService } from '../noteservice.service';
 // import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 
@@ -21,7 +19,7 @@ export class MaterialDashboardComponent {
   headerName :String
 
 
-  constructor(private router: Router, private dialog : MatDialog, private noteService : NoteserviceService) {
+  constructor(private router: Router, private dialog : MatDialog) {
 
   }
 
