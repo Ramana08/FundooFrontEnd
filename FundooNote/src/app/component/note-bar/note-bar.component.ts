@@ -16,12 +16,13 @@ export class NoteBarComponent implements OnInit {
   unarchiveShow : boolean =false;
   noteBarValue : NoteModel =new  NoteModel();
   noteBar : boolean = false;
-  constructor(private updateNote : CardUpdateServiceService , private snackBar : MatSnackBar , private noteService : NoteserviceService)   { }
+  flag : number=0;
+  constructor(private cardUpdate : CardUpdateServiceService , private snackBar : MatSnackBar , private noteService : NoteserviceService)   { }
 
   @Input() noteDetail : NoteModel;
   ngOnInit() 
     {
-      // this.noteService.getAllNotes().subscribe(
+      // this.noteService.getArchiveNotes().subscribe(
       //   response => {
       //     this.noteBarValue=response;
       //     console.log(this.noteBarValue)
@@ -29,6 +30,7 @@ export class NoteBarComponent implements OnInit {
       //             this.noteBar=true
       //    }
       //  )
+      console.log(this.noteBarValue)
        console.log(this.noteBarValue.archive)
     // console.log('hello ',this.noteDetail)
     //  console.log(this.noteDetail.archive)
@@ -37,19 +39,24 @@ export class NoteBarComponent implements OnInit {
           this.archiveShow=true;
       if(this.noteDetail.archive==1)
           this.unarchiveShow=true
+    
   }
   unarchive() : void
   {
     console.log(this.noteDetail)
       console.log("unarchive function")
-      this.updateNote.updateNote(this.noteDetail).subscribe(
+      this.noteService.updateNote(this.noteDetail).subscribe(
         data=> {
            if(data.statusCode==166)
            {
-             this.ngOnInit();
              this.snackBar.open('Note Unarchive Successfully', '', {
                duration: 2000,});
            }
+           this.flag=0;
+          this.cardUpdate.changemessage();
+         
+
+
          },
              
            error => {
@@ -66,14 +73,17 @@ export class NoteBarComponent implements OnInit {
     
    console.log(this.noteDetail)
   
-  this.updateNote.updateNote(this.noteDetail).subscribe(
+  this.noteService.updateNote(this.noteDetail).subscribe(
    data=> {
       if(data.statusCode==166)
       {
-        this.ngOnInit();
+       
         this.snackBar.open('Note Archive Successfully', '', {
           duration: 2000,});
       }
+      this.flag=1;
+      this.cardUpdate.changemessage();
+
     },
         
       error => {
@@ -86,14 +96,18 @@ export class NoteBarComponent implements OnInit {
 
   deleteNote() : void
    {
+     console.log("deleteddd");
+     
+     console.log(this.noteDetail)
       this.noteService.deleteNote(this.noteDetail).subscribe(
         data=> {
            if(data.statusCode==166)
            {
-             this.ngOnInit();
-             this.snackBar.open('Note Archive Successfully', '', {
+            
+             this.snackBar.open('Note deleted Successfully', '', {
                duration: 2000,});
            }
+           this.cardUpdate.changemessage();
          },
              
            error => {

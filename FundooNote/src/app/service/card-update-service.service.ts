@@ -1,26 +1,60 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { NoteModel } from '../models/note.model';
+import { Injectable,OnInit } from '@angular/core';
+
+import { BehaviorSubject } from 'rxjs';
+import { NoteserviceService } from './noteservice.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CardUpdateServiceService {
+export class CardUpdateServiceService implements OnInit{
 
-  constructor(private http: HttpClient) { }
-  private userUrl = 'http://localhost:8080/fundoo/';
+  private allNotes=new BehaviorSubject([]);
+  
+  currentnotes=this.allNotes.asObservable();
 
-public updateNote(note : NoteModel) : any 
-{
-  var httpOptions = {
+  
 
-    headers: new HttpHeaders({'Content-Type': 'application/json' ,
-    'token':localStorage.getItem('jwtToken')}
-    )};
- 
-  return this.http.post<NoteModel>(this.userUrl+'updateArchiveNote',note,httpOptions);
+  // showIcon : boolean ;
+  constructor(private notecrud:NoteserviceService) {
+    
+    console.log("card constructor")
+    this.notecrud.getAllNotes().subscribe(
+      response =>{
+        console.log('response')
+        console.log(response.length);
+        // if(response.length!=0)
+            
+        // if(response==null)
+        //       console.log(this.allNotes)
+        this.allNotes.next(response)
 
-} 
+      },
+      
 
+      error=>
+      {
+        console.log(error);
+      }
+    );
+  
+   }
 
+   ngOnInit():void {
+    
+   }
+   
+  changemessage()
+  {
+    console.log("change message");
+    
+    this.notecrud.getAllNotes().subscribe(
+      response=>{
+  
+        this.allNotes.next(response);
+      },
+      error =>{  
+       console.log(error);
+      }
+    )          
+  }
 }

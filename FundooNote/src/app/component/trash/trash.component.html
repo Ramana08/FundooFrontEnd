@@ -1,5 +1,9 @@
 <div class="center">
-                Notes in Trash are deleted after 7 days.
+Notes in Trash are deleted after 7 days. </div>
+<div *ngIf=showIconAndLetter>
+  
+<div class="center">
+               
 </div>
 <div class="NotificationIcon">
         <mat-icon  style="font-size: 90px" >delete</mat-icon>
@@ -8,3 +12,12 @@
         <h1 >     No notes in Trash
           </h1>
         </div>
+</div>
+<div *ngIf=showArchiveNoteBar class="center">
+
+
+  <app-trash-bar *ngFor="let note of noteBarValue" [noteDetail] = note ></app-trash-bar>
+</div>
+        <!-- <div *ngIf=showArchiveNoteBar>
+          <app-note-bar *ngFor="let note of noteBarValue" [noteDetail] = note ></app-note-bar>
+          </div> -->

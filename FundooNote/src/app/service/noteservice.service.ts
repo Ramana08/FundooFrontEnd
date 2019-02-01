@@ -52,7 +52,7 @@ ngOnInit()
     
       })
     };
-    console.log(this.userUrl+'addNote');
+    console.log(this.userUrl+'getAllNote');
    
     console.log("header ",httpOptions2.headers.get('token'));
      console.log('get url',this.userUrl+'getAllNote');
@@ -83,7 +83,7 @@ ngOnInit()
        
          })
        };
-       console.log(this.userUrl+'addNote');
+       console.log(this.userUrl+'getArchiveNote');
       
        console.log("header ",httpOptions2.headers.get('token'));
         console.log('get url',this.userUrl+'getArchiveNote');
@@ -95,12 +95,39 @@ ngOnInit()
         public deleteNote(note : NoteModel) : any{
           var httpOptions = {
 
-            headers: new HttpHeaders({'Content-Type': 'application/json' }
+            headers: new HttpHeaders({'Content-Type': 'application/json' ,
+            'token':localStorage.getItem('jwtToken')}
             )};
-            console.log("ramana");
             
-           return this.http.delete<NoteModel>(this.userUrl+"deleteNote",httpOptions);
+           return this.http.post<NoteModel>(this.userUrl+"trashNote",note,httpOptions);
         }
+
+
+        public updateNote(note : NoteModel) : any 
+         {
+            var httpOptions = {
+
+               headers: new HttpHeaders({'Content-Type': 'application/json' ,
+              'token':localStorage.getItem('jwtToken')}
+             )};
+ 
+              return this.http.post<NoteModel>(this.userUrl+'updateArchiveNote',note,httpOptions);
+
+          }    
+          public getTrashNotes() : Observable<NoteModel> | any{
+            console.log("local ",localStorage.getItem('jwtToken'))
+            var httpOptions2 = {
+              headers : new HttpHeaders({'token' : localStorage.getItem('jwtToken')
+            
+              })
+            };
+            console.log(this.userUrl+'getTrashNote');
+           
+            console.log("header ",httpOptions2.headers.get('token'));
+             console.log('get url',this.userUrl+'getTrashNote');
+        
+              return this.http.get<NoteModel[]>(this.userUrl+"getTrashNote",httpOptions2);     
+          }  
 }
 
 

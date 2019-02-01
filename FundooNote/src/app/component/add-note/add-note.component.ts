@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import {Router} from '@angular/router';
 import { NoteModel } from 'src/app/models/note.model';
 import { NoteserviceService } from 'src/app/service/noteservice.service';
+import { CardUpdateServiceService } from 'src/app/service/card-update-service.service';
+import { NoteComponent } from '../note/note.component';
 
 
 @Component({
@@ -23,25 +25,25 @@ export class AddNoteComponent implements OnInit {
   note : NoteModel =new NoteModel();
   tempNote : NoteModel = new NoteModel();
   noteBarValue : NoteModel[];
-  constructor(private router : Router ,private notecrud : NoteserviceService , private snackBar : MatSnackBar) { }
+allNotes : NoteModel[];
+  
+  constructor(private router : Router ,private notecrud : NoteserviceService , private snackBar : MatSnackBar,private cardUpdate : CardUpdateServiceService) { }
 
   ngOnInit() {
-
-this.showBrush=!this.showBrush
-this.notecrud.getAllNotes().subscribe(
-  response => {
-    this.noteBarValue=response;
-    console.log(this.noteBarValue)
-      if(this.noteBarValue.length!= 0)
-      {
-            this.noteBar=true
-            this.showIcon=false
+   
+    
+    this.notecrud.getAllNotes().subscribe(
+      response=>{
+  
+        this.allNotes=response;
+        if(this.allNotes.length!=0)
+        this.showIcon=false;
+      },
+      error =>{  
+       console.log(error);
       }
-      else
-          this.showIcon=true
-
-   }
- )
+    )          
+      
   }
   fullCardShow()
   {
@@ -63,40 +65,31 @@ this.notecrud.getAllNotes().subscribe(
         this.noteBar=true;
   (this.notecrud.createNote(this.note)).subscribe(
     
-    data => { 
-      //console.log(data.statusMessage,data.statusCode)
-      if(data.statusCode== 166)
+    response =>{
+      if(response.statusCode==166)
       {
-        this.ngOnInit();
-
-          this.snackBar.open('Note Added Successfully', '', {
-            duration: 2000,});
-            
+        this.snackBar.open(response.statusMessage,"",{
+          duration:2000,
+        })
       }
-     },
-      
-     error => {
-      // this.snackBar.open("alreadyExixt","Register Fails",{
-      //   duration:2000,})
-         console.log("Error", error);
-     }
+      this.cardUpdate.changemessage();
+    },
+    error =>{
+      console.log("Error",error);
+    } 
 
     );
   //  this.noteBarValue=this.note
-  this.tempNote=this.note
-  console.log('temp note ',this.tempNote)
-  if(this.tempNote.title!=null)
-  {
-  this.noteNewBar=true;
+//   this.tempNote=this.note
+//   console.log('temp note ',this.tempNote)
+//   if(this.tempNote.title!=null)
+//   {
+//   this.noteNewBar=true;
   
-  }
+//   }
  this.note=new NoteModel(); 
 }
-else
-{
-       this.showIcon=true
-  
-}
+
 
 }
 archive() : void
@@ -109,6 +102,8 @@ this.notecrud.archiveNote(this.note).subscribe(
  data=> {
     if(data.statusCode==200)
     {
+      if(this.allNotes.length==0)
+          this.showIcon=true;
       this.snackBar.open('Note Archive Successfully', '', {
         duration: 2000,});
     }
@@ -120,6 +115,9 @@ this.notecrud.archiveNote(this.note).subscribe(
     }
 
    );
+   
+   this.note=new NoteModel(); 
+
 }
 
 

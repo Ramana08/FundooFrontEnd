@@ -26,6 +26,8 @@ import { NoteserviceService } from './service/noteservice.service';
 import { DialobBoxComponent } from './component/dialob-box/dialob-box.component';
 import { NoteBarComponent } from './component/note-bar/note-bar.component';
 import { CardUpdateServiceService } from './service/card-update-service.service';
+import { NoteComponent } from './component/note/note.component';
+import { TrashBarComponent } from './component/trash-bar/trash-bar.component';
 
 // import {MatExpansionModule} from '@angular/material/expansion';
 
@@ -50,7 +52,9 @@ import { CardUpdateServiceService } from './service/card-update-service.service'
     TrashComponent,
     ResetOtpVerifyComponent,
     DialobBoxComponent,
-    NoteBarComponent
+    NoteBarComponent,
+    NoteComponent,
+    TrashBarComponent
 
   ],
   imports: [
@@ -96,11 +100,11 @@ import { CardUpdateServiceService } from './service/card-update-service.service'
           {
             
             path:'',
-            component:AddNoteComponent
+            component:NoteComponent
           },
           {
             path:'addNote',
-            component:AddNoteComponent,
+            component:NoteComponent,
             children:[
               {
                 path:'',
