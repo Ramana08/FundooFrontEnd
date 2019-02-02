@@ -6,6 +6,22 @@
           </div>
         </div>
        
-        <div *ngIf=showArchiveNoteBar>
-<app-note-bar *ngFor="let note of noteBarValue" [noteDetail] = note ></app-note-bar>
-</div>
+<!--       
+<div *ngFor="let note of noteBarValue" >
+  <div *ngIf="note.archive">
+    <app-note-bar [noteDetail] = note >
+
+    </app-note-bar>
+  </div>
+</div>  -->
+
+
+<div >
+  <div fxLayout="row wrap" >
+  <div *ngFor="let note of allnotes" >
+  <div *ngIf="note.archive">
+  <app-note-bar [noteDetail]=note class="notepading" >
+  </app-note-bar>
+  </div> </div>
+  </div>
+  </div>

@@ -14,14 +14,26 @@ import { NoteComponent } from '../note/note.component';
 })
 export class AddNoteComponent implements OnInit {
 
-  private colors:string[][]=[['white',"FireBrick","orange","LightSkyBlue"],["Lavender","HoneyDew","blue","CadetBlue"],[ "gray",
-  "Peru","pink","brown"]];
-  barshow:boolean=false;
+  colorCode: Array<Object> = [
+    { name: "white", colorCode: "rgb(255, 255, 255)" },
+    { name: "lightGreen", colorCode: "rgb(204, 255, 144)" },
+    { name: "purple", colorCode: "rgb(215, 174, 251)" },
+    { name: "red", colorCode: "rgb(242, 139, 130)" },
+    { name: "Teal", colorCode: "rgb(167, 255, 235)" },
+    { name: "pink", colorCode: "rgb(253, 207, 232)" },
+    { name: "orange", colorCode: "rgb(251, 188, 4)" },
+    { name: "blue", colorCode: "rgb(203, 240, 248)" },
+    { name: "brown", colorCode: "rgb(230, 201, 168)" },
+    { name: "yellow", colorCode: "rgb(255, 244, 117)" },
+    { name: "darkBlue", colorCode: "rgb(174, 203, 250)" },
+    { name: "gray", colorCode: "rgb(232, 234, 237)" }
+    ]
+  isOpen:boolean=false;
   showIcon : boolean=true;
   showBrush : boolean = true;
   noteBar : boolean = false;
   noteNewBar : boolean = false;
-
+  color : string
   note : NoteModel =new NoteModel();
   tempNote : NoteModel = new NoteModel();
   noteBarValue : NoteModel[];
@@ -45,10 +57,7 @@ allNotes : NoteModel[];
     )          
       
   }
-  fullCardShow()
-  {
-    this.barshow=!this.barshow;
-  }
+
   noteBarShow()
   {
       this.noteBar=!this.noteBar
@@ -56,8 +65,8 @@ allNotes : NoteModel[];
   close() : void {
     // console.log(this.name,this.email,this.password,this.phoneNumber)
     
-    this.barshow=!this.barshow;
-   
+    this.isOpen=!this.isOpen;
+   this.note.color=this.color;
     this.showIcon=false;
     console.log(this.note);
     if(this.note!=null)
@@ -87,7 +96,9 @@ allNotes : NoteModel[];
 //   this.noteNewBar=true;
   
 //   }
+
  this.note=new NoteModel(); 
+ this.note.color="white"
 }
 
 
@@ -96,7 +107,8 @@ archive() : void
 {
   console.log("archive function");
   
-  this.barshow=!this.barshow;
+  this.isOpen=!this.isOpen;
+  this.note.color=this.color;
 
 this.notecrud.archiveNote(this.note).subscribe(
  data=> {
@@ -107,6 +119,7 @@ this.notecrud.archiveNote(this.note).subscribe(
       this.snackBar.open('Note Archive Successfully', '', {
         duration: 2000,});
     }
+    this.cardUpdate.changemessage();
   },
       
     error => {
@@ -117,9 +130,12 @@ this.notecrud.archiveNote(this.note).subscribe(
    );
    
    this.note=new NoteModel(); 
-
+   this.note.color="white"
 }
 
-
+changeColor(color)
+{
+  this.color=color;
+}
 
 }

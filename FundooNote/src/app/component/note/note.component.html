@@ -1,9 +1,6 @@
-<div fxLayout="row" fxLayoutGap="10px">
-  <div >
 
-  </div>
+ 
 
-<div  fxLayout="column"  fxLayoutGap="20px">
 
   <div fxLayoutAlign="center start">
           <app-add-note >
@@ -15,13 +12,12 @@
           <!-- flexLayout="row wrap" fxLayoutGap="10px"> -->
 
               <div *ngFor="let note of allnotes" >
-                  
+                  <div *ngIf="!note.archive && !note.trash">
                   <app-note-bar  [noteDetail]=note >
 
                   </app-note-bar>
+                </div>
               </div>
 
           </div>
-</div>
 
-</div>

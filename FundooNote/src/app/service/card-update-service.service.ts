@@ -21,11 +21,7 @@ export class CardUpdateServiceService implements OnInit{
     this.notecrud.getAllNotes().subscribe(
       response =>{
         console.log('response')
-        console.log(response.length);
-        // if(response.length!=0)
-            
-        // if(response==null)
-        //       console.log(this.allNotes)
+      
         this.allNotes.next(response)
 
       },

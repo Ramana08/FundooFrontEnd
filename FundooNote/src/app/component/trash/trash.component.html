@@ -13,10 +13,15 @@ Notes in Trash are deleted after 7 days. </div>
           </h1>
         </div>
 </div>
-<div *ngIf=showArchiveNoteBar class="center">
+<div  class="center">
 
+<div *ngFor="let note of allnotes">
 
-  <app-trash-bar *ngFor="let note of noteBarValue" [noteDetail] = note ></app-trash-bar>
+  <div *ngIf="note.trash"> 
+     <app-trash-bar  [noteDetail] = note ></app-trash-bar>
+</div>
+</div>
+
 </div>
         <!-- <div *ngIf=showArchiveNoteBar>
           <app-note-bar *ngFor="let note of noteBarValue" [noteDetail] = note ></app-note-bar>

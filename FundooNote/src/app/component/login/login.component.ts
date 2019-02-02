@@ -5,6 +5,7 @@ import { MatDialog, MatSnackBar } from '@angular/material'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LoginModel } from 'src/app/models/login.model';
 import { UserserviceService } from 'src/app/service/user-service.service';
+import { CardUpdateServiceService } from 'src/app/service/card-update-service.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ import { UserserviceService } from 'src/app/service/user-service.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, private userService: UserserviceService, private snackBar: MatSnackBar, private formBuilder: FormBuilder) { }
+  constructor(private updateCrud : CardUpdateServiceService, private router: Router, private userService: UserserviceService, private snackBar: MatSnackBar, private formBuilder: FormBuilder) { }
   login: LoginModel= new LoginModel();
   loginForm: FormGroup
   tempEmail: String
@@ -50,7 +51,7 @@ export class LoginComponent implements OnInit {
           console.log(response)
           // console.log(response.headers.get('jwtToken'));
           localStorage.setItem('jwtToken', response.headers.get('jwttokenxxx'));
-          
+          this.updateCrud.changemessage();
           this.router.navigate(['/dashBoard'])
         }
 

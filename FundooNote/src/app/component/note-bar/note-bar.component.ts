@@ -12,24 +12,34 @@ import { NoteModel } from 'src/app/models/note.model';
 })
 export class NoteBarComponent implements OnInit {
 
+  colorCode: Array<Object> = [
+    { name: "white", colorCode: "rgb(255, 255, 255)" },
+    { name: "lightGreen", colorCode: "rgb(204, 255, 144)" },
+    { name: "purple", colorCode: "rgb(215, 174, 251)" },
+    { name: "red", colorCode: "rgb(242, 139, 130)" },
+    { name: "Teal", colorCode: "rgb(167, 255, 235)" },
+    { name: "pink", colorCode: "rgb(253, 207, 232)" },
+    { name: "orange", colorCode: "rgb(251, 188, 4)" },
+    { name: "blue", colorCode: "rgb(203, 240, 248)" },
+    { name: "brown", colorCode: "rgb(230, 201, 168)" },
+    { name: "yellow", colorCode: "rgb(255, 244, 117)" },
+    { name: "darkBlue", colorCode: "rgb(174, 203, 250)" },
+    { name: "gray", colorCode: "rgb(232, 234, 237)" }
+    ]
+
   archiveShow : boolean = false;
   unarchiveShow : boolean =false;
   noteBarValue : NoteModel =new  NoteModel();
   noteBar : boolean = false;
-  flag : number=0;
-  constructor(private cardUpdate : CardUpdateServiceService , private snackBar : MatSnackBar , private noteService : NoteserviceService)   { }
+color : string
 
   @Input() noteDetail : NoteModel;
+  constructor(private cardUpdate : CardUpdateServiceService , private snackBar : MatSnackBar , private noteService : NoteserviceService)   { }
+
+
   ngOnInit() 
     {
-      // this.noteService.getArchiveNotes().subscribe(
-      //   response => {
-      //     this.noteBarValue=response;
-      //     console.log(this.noteBarValue)
-      //       if(this.noteBarValue != null)
-      //             this.noteBar=true
-      //    }
-      //  )
+  
       console.log(this.noteBarValue)
        console.log(this.noteBarValue.archive)
     // console.log('hello ',this.noteDetail)
@@ -39,38 +49,37 @@ export class NoteBarComponent implements OnInit {
           this.archiveShow=true;
       if(this.noteDetail.archive==1)
           this.unarchiveShow=true
-    
+    // this.cardUpdate.changemessage();
   }
-  unarchive() : void
-  {
-    console.log(this.noteDetail)
-      console.log("unarchive function")
-      this.noteService.updateNote(this.noteDetail).subscribe(
-        data=> {
-           if(data.statusCode==166)
-           {
-             this.snackBar.open('Note Unarchive Successfully', '', {
-               duration: 2000,});
-           }
-           this.flag=0;
-          this.cardUpdate.changemessage();
+  // unarchive() : void
+  // {
+  //   console.log(this.noteDetail)
+  //     console.log("unarchive function")
+  //     this.noteService.updateNote(this.noteDetail).subscribe(
+  //       data=> {
+  //          if(data.statusCode==166)
+  //          {
+  //            this.snackBar.open('Note Unarchive Successfully', '', {
+  //              duration: 2000,});
+  //          }
+      
+  //         this.cardUpdate.changemessage();
          
 
 
-         },
+  //        },
              
-           error => {
+  //          error => {
             
-               console.log("Error", error);
-           }
+  //              console.log("Error", error);
+  //          }
        
-          );
-  }
+  //         );
+  // }
 
   archive() : void
   {
     console.log("archive function");
-    
    console.log(this.noteDetail)
   
   this.noteService.updateNote(this.noteDetail).subscribe(
@@ -81,7 +90,7 @@ export class NoteBarComponent implements OnInit {
         this.snackBar.open('Note Archive Successfully', '', {
           duration: 2000,});
       }
-      this.flag=1;
+     
       this.cardUpdate.changemessage();
 
     },
@@ -99,7 +108,7 @@ export class NoteBarComponent implements OnInit {
      console.log("deleteddd");
      
      console.log(this.noteDetail)
-      this.noteService.deleteNote(this.noteDetail).subscribe(
+      this.noteService.updateTrashNote(this.noteDetail).subscribe(
         data=> {
            if(data.statusCode==166)
            {
@@ -116,5 +125,28 @@ export class NoteBarComponent implements OnInit {
            }
        
           );
+  }
+
+  changeColor(color)
+  {
+    this.noteDetail.color=color
+    this.noteService.updateColorNote(this.noteDetail).subscribe(
+      data=> {
+         if(data.statusCode==166)
+         {
+          
+           this.snackBar.open('color updated Successfully', '', {
+             duration: 2000,});
+         }
+         this.cardUpdate.changemessage();
+       },
+           
+         error => {
+          
+             console.log("Error", error);
+         }
+     
+        );
+    
   }
 }

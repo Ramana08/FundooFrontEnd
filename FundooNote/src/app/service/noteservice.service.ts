@@ -99,7 +99,7 @@ ngOnInit()
             'token':localStorage.getItem('jwtToken')}
             )};
             
-           return this.http.post<NoteModel>(this.userUrl+"trashNote",note,httpOptions);
+           return this.http.post<NoteModel>(this.userUrl+"trashNote",note,httpOptions)
         }
 
 
@@ -113,7 +113,30 @@ ngOnInit()
  
               return this.http.post<NoteModel>(this.userUrl+'updateArchiveNote',note,httpOptions);
 
-          }    
+          }  
+          
+          public updateTrashNote(note : NoteModel) : any{
+            var httpOptions = {
+
+              headers: new HttpHeaders({'Content-Type': 'application/json' ,
+             'token':localStorage.getItem('jwtToken')}
+            )};
+            return this.http.post<NoteModel>(this.userUrl+'updateTrashNote',note,httpOptions);
+
+          }
+          public updateColorNote(note : NoteModel) : any{
+            var httpOptions = {
+
+              headers: new HttpHeaders({'Content-Type': 'application/json' ,
+             'token':localStorage.getItem('jwtToken')}
+            )};
+            return this.http.post<NoteModel>(this.userUrl+'updateColorNote',note,httpOptions);
+
+          }
+
+
+
+
           public getTrashNotes() : Observable<NoteModel> | any{
             console.log("local ",localStorage.getItem('jwtToken'))
             var httpOptions2 = {
