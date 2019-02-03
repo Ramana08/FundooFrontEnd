@@ -65,7 +65,7 @@
 
             </mat-menu>
           <mat-menu #accountMenu="matMenu">
-            <span>Ramana Ganesh</span>
+            <span>{{userName}}</span>
             <button mat-menu-item (click)="logout()">
               <mat-icon (click)="logout()" class="mat-18">power_settings_new</mat-icon> Logout
             </button>
@@ -92,6 +92,7 @@
                         </p>
                       </div> -->
                       <p  class="textSize">LABELS</p>
+                      
                   <button class="sideNavListItems" mat-button (click)="openDialog()" >
 
                     <mat-icon >edit</mat-icon> Edit Labels

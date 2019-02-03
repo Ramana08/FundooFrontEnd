@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 import { CardUpdateServiceService } from 'src/app/service/card-update-service.service';
 import { NoteserviceService } from 'src/app/service/noteservice.service';
 import { NoteModel } from 'src/app/models/note.model';
+import { EditCardComponent } from '../edit-card/edit-card.component';
 
 
 @Component({
@@ -34,7 +35,7 @@ export class NoteBarComponent implements OnInit {
 color : string
 
   @Input() noteDetail : NoteModel;
-  constructor(private cardUpdate : CardUpdateServiceService , private snackBar : MatSnackBar , private noteService : NoteserviceService)   { }
+  constructor(private cardUpdate : CardUpdateServiceService , private snackBar : MatSnackBar , private noteService : NoteserviceService,  private dialog: MatDialog)   { }
 
 
   ngOnInit() 
@@ -148,5 +149,26 @@ color : string
      
         );
     
+  }
+
+  openEditDialog(item)
+  {
+    console.log('note ',item);
+    
+    const dialogRef = this.dialog.open(EditCardComponent, {
+      width: '800px',
+
+      data: item
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // this.http.post(item, "note/updateNote").subscribe(
+
+      // )
+      // this.messageEvent.emit("emit from child");
+
+    });
+
   }
 }

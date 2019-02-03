@@ -50,6 +50,10 @@ export class LoginComponent implements OnInit {
           })
           console.log(response)
           // console.log(response.headers.get('jwtToken'));
+          console.log(response.body);
+          
+          localStorage.setItem('loginItem', JSON.stringify(response.body));
+
           localStorage.setItem('jwtToken', response.headers.get('jwttokenxxx'));
           this.updateCrud.changemessage();
           this.router.navigate(['/dashBoard'])

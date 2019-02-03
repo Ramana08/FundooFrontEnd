@@ -54,7 +54,7 @@ ngOnInit()
     };
     console.log(this.userUrl+'getAllNote');
    
-    console.log("header ",httpOptions2.headers.get('token'));
+   // console.log("header ",httpOptions2.headers.get('token'));
      console.log('get url',this.userUrl+'getAllNote');
 
       return this.http.get<NoteModel[]>(this.userUrl+"getAllNote",httpOptions2);   

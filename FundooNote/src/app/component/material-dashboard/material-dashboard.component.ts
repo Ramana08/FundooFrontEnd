@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
 import { MatDialog } from '@angular/material';
 import { DialobBoxComponent } from '../dialob-box/dialob-box.component';
+import { jsonpCallbackContext } from '@angular/common/http/src/module';
+import { LoginModel } from 'src/app/models/login.model';
 // import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 
@@ -17,7 +19,7 @@ export class MaterialDashboardComponent {
   /** Based on the screen size, switch from standard to one column per row */
   panelOpenState : boolean
   headerName :String
-
+  userName : LoginModel;
 
   constructor(private router: Router, private dialog : MatDialog) {
 
@@ -29,7 +31,13 @@ export class MaterialDashboardComponent {
   {
     
     this.headerName= "Fundoo Notes";
+    let userCredentials = JSON.parse(localStorage.getItem("loginItem"));
+    console.log(userCredentials.data.email.toUpperCase());
+
+    this.userName = userCredentials.data.name.toUpperCase();
+    
   }
+
   addNote() : void {
     this.router.navigate(["addNote"])
   }
@@ -53,7 +61,7 @@ logout() : void {
  // this.noteService.httpOptions2.headers.delete('jwtToken');
   localStorage.removeItem('jwtToken');
   
-  
+  localStorage.removeItem('loginItem')
   this.router.navigate(["/login"])
 }
 openDialog()

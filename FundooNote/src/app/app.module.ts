@@ -28,6 +28,7 @@ import { NoteBarComponent } from './component/note-bar/note-bar.component';
 import { CardUpdateServiceService } from './service/card-update-service.service';
 import { NoteComponent } from './component/note/note.component';
 import { TrashBarComponent } from './component/trash-bar/trash-bar.component';
+import { EditCardComponent } from './component/edit-card/edit-card.component';
 
 // import {MatExpansionModule} from '@angular/material/expansion';
 
@@ -54,7 +55,8 @@ import { TrashBarComponent } from './component/trash-bar/trash-bar.component';
     DialobBoxComponent,
     NoteBarComponent,
     NoteComponent,
-    TrashBarComponent
+    TrashBarComponent,
+    EditCardComponent
 
   ],
   imports: [
@@ -139,6 +141,6 @@ import { TrashBarComponent } from './component/trash-bar/trash-bar.component';
   ],
   providers: [UserserviceService,NoteserviceService,CardUpdateServiceService],
   bootstrap: [AppComponent],
-entryComponents :[DialobBoxComponent]
+entryComponents :[DialobBoxComponent,EditCardComponent]
 })
 export class AppModule { }
