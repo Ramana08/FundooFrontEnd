@@ -39,3 +39,10 @@ width: 100%
   margin-right: auto;
   width: 25%; 
 }
+.inputDiv {
+
+  border: none;
+  outline: none;
+  resize: none;
+  width:100%;
+}

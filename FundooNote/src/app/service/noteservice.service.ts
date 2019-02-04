@@ -103,7 +103,18 @@ ngOnInit()
         }
 
 
-        public updateNote(note : NoteModel) : any 
+        public updateNote(Note : NoteModel) : any 
+        {
+          var httpOptions = {
+
+            headers: new HttpHeaders({'Content-Type': 'application/json' ,
+           'token':localStorage.getItem('jwtToken')}
+          )};
+
+           return this.http.post<NoteModel>(this.userUrl+'updateNote',Note,httpOptions);
+        }
+
+        public updateArchiveNote(note : NoteModel) : any 
          {
             var httpOptions = {
 

@@ -29,6 +29,10 @@ export class AddNoteComponent implements OnInit {
     { name: "gray", colorCode: "rgb(232, 234, 237)" }
     ]
   isOpen:boolean=false;
+  menuOpen : boolean =false;
+
+  showTick : boolean =true;
+  subMenuOpen : boolean = false;
   showIcon : boolean=true;
   showBrush : boolean = true;
   noteBar : boolean = false;
@@ -57,7 +61,11 @@ allNotes : NoteModel[];
     )          
       
   }
-
+  subMenuOpenFun()
+  {
+    this.subMenuOpen=true;
+    this.showTick=false;
+  }
   noteBarShow()
   {
       this.noteBar=!this.noteBar

@@ -28,6 +28,7 @@ export class NoteBarComponent implements OnInit {
     { name: "gray", colorCode: "rgb(232, 234, 237)" }
     ]
 
+    isOpenNote : boolean = false;
   archiveShow : boolean = false;
   unarchiveShow : boolean =false;
   noteBarValue : NoteModel =new  NoteModel();
@@ -83,7 +84,7 @@ color : string
     console.log("archive function");
    console.log(this.noteDetail)
   
-  this.noteService.updateNote(this.noteDetail).subscribe(
+  this.noteService.updateArchiveNote(this.noteDetail).subscribe(
    data=> {
       if(data.statusCode==166)
       {
@@ -163,6 +164,18 @@ color : string
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      console.log('after dialog ',item);
+      this.noteService.updateNote(item).subscribe(
+        data=> {
+          if(data.statusCode==166)
+          {
+           
+            this.snackBar.open('note updated Successfully', '', {
+              duration: 2000,});
+          }
+          this.cardUpdate.changemessage();
+        }
+      )
       // this.http.post(item, "note/updateNote").subscribe(
 
       // )

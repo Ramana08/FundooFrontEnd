@@ -1,4 +1,4 @@
-<div class="mainEditArea" [ngStyle]="{'backgroundColor': noteDetail.color}" >
+<div class="mainEditArea" *ngIf="!isOpen" [ngStyle]="{'backgroundColor': noteDetail.color}">
   <!-- <mat-card [ngStyle]="{'backgroundColor': noteDetail.color}" class="cardSize">
 
 <mat-card-title >
@@ -30,8 +30,12 @@
 
   <!-- <img matCardImage src="Card wide image source"> -->
 
-  <textarea [ngStyle]="{'backgroundColor': noteDetail.color}" class="inputDiv" cols="50" rows="2" [(ngModel)]="noteDetail.description">{{noteDetail.description}}</textarea>
-
+  <!-- <textarea [ngStyle]="{'backgroundColor': noteDetail.color}" class="inputDiv" cols="50" rows="2" [(ngModel)]="noteDetail.description">{{noteDetail.description}}</textarea> -->
+  <textarea  class="inputDiv" [ngStyle]="{'backgroundColor': noteDetail.color}" [(ngModel)]="noteDetail.description"   matInput
+  cdkTextareaAutosize
+             #autosize="cdkTextareaAutosize"
+             cdkAutosizeMinRows="0"
+             cdkAutosizeMaxRows="40">{{noteDetail.description}}</textarea>
 </div>
 
 <mat-card-footer>
@@ -73,6 +77,8 @@
       </mat-icon>
 
     </button>
+    <button mat-button color="warn" style="left: 60%" (click)="closeAndSave(noteDetail)">close</button>
+
     <!-- <button mat-button (click)="close()" style="left:10px">Close</button> -->
 
   </div>

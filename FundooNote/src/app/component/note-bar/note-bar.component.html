@@ -1,8 +1,8 @@
 
     <div class="noteBarCenter">
-      <mat-card [ngStyle]="{'backgroundColor': noteDetail.color}" (click)="openEditDialog(noteDetail)">
+      <mat-card [ngStyle]="{'backgroundColor': noteDetail.color}" >
   
-  <mat-card-title >
+  <mat-card-title (click)="openEditDialog(noteDetail)">
     <!-- <input matInput class="takeanote" [(ngModel)]="note.title" placeholder="title" id="title"  style="margin-left:0px;" > </mat-card-title> -->
   <!--   
     <textarea class="takeanote" placeholder="Title" [(ngModel)]="note.title" value="hi" style="margin-left:0px;" matInput
@@ -16,7 +16,7 @@
   </p>
   </mat-card-title>
   
-  <mat-card-subtitle>
+  <mat-card-subtitle (click)="openEditDialog(noteDetail)">
     <!-- <input matInput class="inputclass" [(ngModel)]="note.description" placeholder="take a note...." id="description" required> -->
   
     <!-- <div aria-placeholder="take a note...." contenteditable="true" role="textbox" class="takeanote" >
@@ -29,10 +29,14 @@
                cdkAutosizeMaxRows="40"
                >
                </textarea> -->
-               <p>
+               <!-- <p>
                  {{noteDetail.description}}
-               </p>
-      
+               </p> -->
+               <textarea  class="inputDiv" [ngStyle]="{'backgroundColor': noteDetail.color}" value={{noteDetail.description}}   matInput
+cdkTextareaAutosize
+           #autosize="cdkTextareaAutosize"
+           cdkAutosizeMinRows="0"
+           cdkAutosizeMaxRows="40"></textarea>
   </mat-card-subtitle>
   
   <mat-card-footer>
