@@ -171,7 +171,7 @@ cdkTextareaAutosize
 <mat-icon class="mat-18">archive</mat-icon>
 </button>
 
-<button mat-icon-button matTooltip="More" [matMenuTriggerFor]="moreMenu" [matMenuTriggerData]="{item:note}">
+<button mat-icon-button matTooltip="More" [matMenuTriggerFor]="moreMenu"  (click)="openMenu()">
 <mat-icon class="mat-18">more_vert</mat-icon>
 </button>
 
@@ -179,7 +179,7 @@ cdkTextareaAutosize
 
 </div>
 
-</div>
+<!-- </div> -->
 
 <mat-menu #colorMenu="matMenu" class="colorMenu">
 
@@ -198,14 +198,80 @@ cdkTextareaAutosize
 </ng-template>
 
 </mat-menu>
+<mat-menu #moreMenu="matMenu" >
+<div *ngIf="subMenuOpen">
+    <button  mat-menu-item (click)="menuSub()" *ngIf="!open" >Add Label</button>
+  </div>
+  <div *ngIf="open">
+     Label Note
+    <div>
+      <input placeholder="enter label name">
+    </div>
+  </div>
+</mat-menu>
+<!-- <mat-menu #moreMenu="matMenu"  >
 
-<mat-menu #moreMenu="matMenu">
+ 
+<mat-toolbar *ngIf="!subMenuOpen" >
+          <mat-toolbar-row *ngIf="!subMenuOpen" >
+      
+      <button  mat-menu-item   (click)="subMenuOpen=true">Add Label</button>
+    </mat-toolbar-row>
+  
+    <mat-toolbar-row  *ngIf="!subMenuOpen">
+      <span>Show tick boxes</span>
+      <span class="example-spacer"></span>
+      <mat-icon class="example-icon">verified_user</mat-icon>
+    </mat-toolbar-row>
+</mat-toolbar> 
 
-<ng-template matMenuContent let-item="item">
-<button mat-menu-item>add Label</button>
-<button mat-menu-item>Show tick boxes</button>
+<div *ngIf="subMenuOpen" >
+      Label Note
+      <input placeholder="enter label name">
+</div>
+</mat-menu> -->
+      
+<!-- <mat-menu #moreMenu="matMenu"  >
+    <mat-toolbar >
+     
+        <span>Third Line</span>
+        <span class="example-spacer"></span>
+        <mat-icon class="example-icon">favorite</mat-icon>
+        <mat-icon class="example-icon">delete</mat-icon>
+      
+  </mat-toolbar>
 
-</ng-template>
+
+</mat-menu> -->
+<!-- <div *ngIf="subMenuOpen">
+<mat-menu >
+ 
+    <mat-toolbar>
+    <mat-toolbar-row>
+      <span>Third Line</span>
+      <span class="example-spacer"></span>
+      <mat-icon class="example-icon">favorite</mat-icon>
+      <mat-icon class="example-icon">delete</mat-icon>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+
+</mat-menu>
+</div> -->
+<!-- <mat-menu #moreMenu="matMenu" *ngIf="subMenu">
+    <mat-toolbar-row>
+        <span>Third Line</span>
+        <span class="example-spacer"></span>
+        <mat-icon class="example-icon">favorite</mat-icon>
+        <mat-icon class="example-icon">delete</mat-icon>
+      </mat-toolbar-row>
+</mat-menu> -->
+<mat-menu #subMenu="matMenu">
+    <!-- <ng-template matMenuContent let-item="item"> -->
+     Label Note
+        <input  matInput placeholder="create new label" >
+  
+  <!-- </ng-template> -->
 </mat-menu>
 <!-- 
   <div *ngIf=showIcon>
