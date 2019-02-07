@@ -33,13 +33,9 @@ ngOnInit()
       'token':localStorage.getItem('jwtToken')}
       )};
    
-    console.log(this.userUrl+'addNote');
-    console.log("header ",httpOptions.headers.get('token'));
+   
 
-    httpOptions.headers.set('token',localStorage.getItem('jwtToken'));
-    console.log("after ",httpOptions.headers.get('token'));
-
-    return this.http.post<NoteModel>(this.userUrl+'addNote',note,httpOptions);
+    return this.http.post<NoteModel>(this.userUrl+'note',note,httpOptions);
    
   }
  
@@ -52,12 +48,9 @@ ngOnInit()
     
       })
     };
-    console.log(this.userUrl+'getAllNote');
-   
-   // console.log("header ",httpOptions2.headers.get('token'));
-     console.log('get url',this.userUrl+'getAllNote');
 
-      return this.http.get<NoteModel[]>(this.userUrl+"getAllNote",httpOptions2);   
+
+      return this.http.get<NoteModel[]>(this.userUrl+"note",httpOptions2);   
         
      }
 
@@ -99,7 +92,7 @@ ngOnInit()
             'token':localStorage.getItem('jwtToken')}
             )};
             
-           return this.http.post<NoteModel>(this.userUrl+"trashNote",note,httpOptions)
+           return this.http.delete<NoteModel>(this.userUrl+"note/"+note.id,httpOptions)
         }
 
 
@@ -111,18 +104,21 @@ ngOnInit()
            'token':localStorage.getItem('jwtToken')}
           )};
 
-           return this.http.post<NoteModel>(this.userUrl+'updateNote',Note,httpOptions);
+           return this.http.put<NoteModel>(this.userUrl+'note',Note,httpOptions);
         }
 
         public updateArchiveNote(note : NoteModel) : any 
          {
+           console.log('hihihi');
+           
             var httpOptions = {
 
                headers: new HttpHeaders({'Content-Type': 'application/json' ,
               'token':localStorage.getItem('jwtToken')}
              )};
- 
-              return this.http.post<NoteModel>(this.userUrl+'updateArchiveNote',note,httpOptions);
+              console.log(this.userUrl+'note/archive/'+note.id);
+              
+              return this.http.put<NoteModel>(this.userUrl+'note/archive/'+note.id,null,httpOptions);
 
           }  
           
@@ -132,18 +128,18 @@ ngOnInit()
               headers: new HttpHeaders({'Content-Type': 'application/json' ,
              'token':localStorage.getItem('jwtToken')}
             )};
-            return this.http.post<NoteModel>(this.userUrl+'updateTrashNote',note,httpOptions);
+            return this.http.put<NoteModel>(this.userUrl+'note/trash/'+note.id,null,httpOptions);
 
           }
-          public updateColorNote(note : NoteModel) : any{
-            var httpOptions = {
+          // public updateColorNote(note : NoteModel) : any{
+          //   var httpOptions = {
 
-              headers: new HttpHeaders({'Content-Type': 'application/json' ,
-             'token':localStorage.getItem('jwtToken')}
-            )};
-            return this.http.post<NoteModel>(this.userUrl+'updateColorNote',note,httpOptions);
+          //     headers: new HttpHeaders({'Content-Type': 'application/json' ,
+          //    'token':localStorage.getItem('jwtToken')}
+          //   )};
+          //   return this.http.put<NoteModel>(this.userUrl+'note/color/'+note.id,note,httpOptions);
 
-          }
+          // }
 
 
 

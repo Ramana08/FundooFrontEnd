@@ -121,8 +121,8 @@ archive() : void
   
   this.isOpen=!this.isOpen;
   this.note.color=this.color;
-
-this.notecrud.archiveNote(this.note).subscribe(
+  this.note.archive=true;
+this.notecrud.createNote(this.note).subscribe(
  data=> {
     if(data.statusCode==200)
     {

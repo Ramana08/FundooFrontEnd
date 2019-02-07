@@ -1,7 +1,7 @@
 
     <div class="noteBarCenter">
       <mat-card [ngStyle]="{'backgroundColor': noteDetail.color}" >
-  
+  <mat-card-header>
   <mat-card-title (click)="openEditDialog(noteDetail)">
     <!-- <input matInput class="takeanote" [(ngModel)]="note.title" placeholder="title" id="title"  style="margin-left:0px;" > </mat-card-title> -->
   <!--   
@@ -14,7 +14,17 @@
     <p>
     {{noteDetail.title}}
   </p>
+  <!-- <button class="pinIcon" mat-icon-button matTooltip="Pin/Unpin Note" (click)="pinOption(item)">
+    <ng-container *ngIf="pinOption; else elsePinTemplate">
+    <svg-icon [src]="pinnedIconSrc"> </svg-icon>
+    </ng-container>
+    <ng-template #elsePinTemplate>
+    <svg-icon [src]="unpinnedIconSrc"> </svg-icon>
+    </ng-template>
+    </button> -->
+
   </mat-card-title>
+</mat-card-header>
   
   <mat-card-subtitle (click)="openEditDialog(noteDetail)">
     <!-- <input matInput class="inputclass" [(ngModel)]="note.description" placeholder="take a note...." id="description" required> -->

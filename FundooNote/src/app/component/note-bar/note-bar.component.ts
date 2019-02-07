@@ -47,9 +47,9 @@ color : string
     // console.log('hello ',this.noteDetail)
     //  console.log(this.noteDetail.archive)
     console.log("hellllllooooo")
-     if(this.noteDetail.archive==0)
+     if(this.noteDetail.archive==false)
           this.archiveShow=true;
-      if(this.noteDetail.archive==1)
+      if(this.noteDetail.archive==true)
           this.unarchiveShow=true
     // this.cardUpdate.changemessage();
   }
@@ -132,7 +132,7 @@ color : string
   changeColor(color)
   {
     this.noteDetail.color=color
-    this.noteService.updateColorNote(this.noteDetail).subscribe(
+    this.noteService.updateNote(this.noteDetail).subscribe(
       data=> {
          if(data.statusCode==166)
          {
