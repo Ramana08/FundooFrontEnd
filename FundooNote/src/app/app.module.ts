@@ -29,6 +29,7 @@ import { CardUpdateServiceService } from './service/card-update-service.service'
 import { NoteComponent } from './component/note/note.component';
 import { TrashBarComponent } from './component/trash-bar/trash-bar.component';
 import { EditCardComponent } from './component/edit-card/edit-card.component';
+import { RoutingModule } from './routing/routing.module';
 
 // import {MatExpansionModule} from '@angular/material/expansion';
 
@@ -68,70 +69,7 @@ import { EditCardComponent } from './component/edit-card/edit-card.component';
     CustomMaterialModule,
     HttpClientModule,
     // MatExpansionModule,
-    RouterModule.forRoot([
-      {
-        path:'login',//localhost:4200/data
-        component:LoginComponent
-      },
-     
-      {
-        path:'forgetPassword',
-        component: ForgetPasswordComponent
-      },
-      {
-        path:"resetOtpVerify",
-        component:ResetOtpVerifyComponent
-      },
-      {
-        path:'otpVerify',
-        component: OtpVerificationComponent
-      },
-      {
-        path:'',
-        component: HomeComponent
-      },
-      
-      {
-        path:'register',
-        component:RegisterComponent
-      },
-      {
-        path:'dashBoard',
-        component:MaterialDashboardComponent,
-        children:[
-          {
-            
-            path:'',
-            component:NoteComponent
-          },
-          {
-            path:'addNote',
-            component:NoteComponent,
-            children:[
-              {
-                path:'',
-                component: NoteBarComponent
-              }
-            ]
-          },
-         {
-            path:'remainder',
-            component: RemaindersComponent
-          },
-         
-          {
-            path:'archive',
-            component: ArchiveComponent
-          }
-          ,
-          {
-            path:'trash',
-            component: TrashComponent
-          }
-        ]
-      },
-     
-    ]),
+    RoutingModule,
     MatGridListModule,
     MatCardModule,
     MatMenuModule,

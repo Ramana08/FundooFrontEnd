@@ -30,7 +30,7 @@ export class AddNoteComponent implements OnInit {
     ]
   isOpen:boolean=false;
   menuOpen : boolean =false;
-
+  pin : boolean = false;
   showTick : boolean =true;
   subMenuOpen : boolean = false;
   subMenu : boolean = false;
@@ -78,11 +78,12 @@ allNotes : NoteModel[];
     
     this.isOpen=!this.isOpen;
     this.showIcon=false;
-    console.log(this.note);
-    if(this.note.title!=null || this.note.description!=null)
+    
+    console.log(this.note.title.length);
+    if(this.note.title.length!=0 || this.note.description.length!=0)
        {
         this.note.color=this.color;
-
+        this.note.pin=this.pin;
         this.noteBar=true;
   (this.notecrud.createNote(this.note)).subscribe(
     
@@ -111,6 +112,7 @@ allNotes : NoteModel[];
 
  this.note=new NoteModel(); 
  this.color="white"
+ this.pin=false;
 }
 
 
@@ -149,6 +151,13 @@ changeColor(color)
 {
   this.color=color;
 }
+
+changePin()
+{
+  this.pin=!this.pin;
+  console.log(this.pin)
+}
+
 addLabel()
 {
   this.subMenu=false;

@@ -50,4 +50,8 @@ if(this.noteDetail.archive==1)
   {
     this.noteDetail.color=color;
   }
+  changePin()
+  {
+    this.noteDetail.pin=!this.noteDetail.pin
+  }
 }

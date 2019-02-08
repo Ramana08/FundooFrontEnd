@@ -35,6 +35,7 @@ export class NoteBarComponent implements OnInit {
   noteBar : boolean = false;
 color : string
 
+
   @Input() noteDetail : NoteModel;
   constructor(private cardUpdate : CardUpdateServiceService , private snackBar : MatSnackBar , private noteService : NoteserviceService,  private dialog: MatDialog)   { }
 
@@ -53,31 +54,6 @@ color : string
           this.unarchiveShow=true
     // this.cardUpdate.changemessage();
   }
-  // unarchive() : void
-  // {
-  //   console.log(this.noteDetail)
-  //     console.log("unarchive function")
-  //     this.noteService.updateNote(this.noteDetail).subscribe(
-  //       data=> {
-  //          if(data.statusCode==166)
-  //          {
-  //            this.snackBar.open('Note Unarchive Successfully', '', {
-  //              duration: 2000,});
-  //          }
-      
-  //         this.cardUpdate.changemessage();
-         
-
-
-  //        },
-             
-  //          error => {
-            
-  //              console.log("Error", error);
-  //          }
-       
-  //         );
-  // }
 
   archive() : void
   {
@@ -152,12 +128,33 @@ color : string
     
   }
 
+  changePin()
+  {
+    this.noteService.updatePin(this.noteDetail).subscribe(
+      data=>{
+        if(data.statusCode==166)
+        {
+
+          this.snackBar.open('pin updated Successfully', '', {
+            duration: 2000,});
+        }  
+        this.cardUpdate.changemessage();
+
+      },
+      error=>
+      {
+        console.log("Error", error);
+      }
+      
+    )
+  }
+
   openEditDialog(item)
   {
     console.log('note ',item);
     
     const dialogRef = this.dialog.open(EditCardComponent, {
-      width: '800px',
+      width: '550px',
 
       data: item
     });

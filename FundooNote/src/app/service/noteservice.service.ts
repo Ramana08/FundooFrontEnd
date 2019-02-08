@@ -131,17 +131,16 @@ ngOnInit()
             return this.http.put<NoteModel>(this.userUrl+'note/trash/'+note.id,null,httpOptions);
 
           }
-          // public updateColorNote(note : NoteModel) : any{
-          //   var httpOptions = {
+        
+          public updatePin(note : NoteModel) : any{
+            var httpOptions = {
 
-          //     headers: new HttpHeaders({'Content-Type': 'application/json' ,
-          //    'token':localStorage.getItem('jwtToken')}
-          //   )};
-          //   return this.http.put<NoteModel>(this.userUrl+'note/color/'+note.id,note,httpOptions);
+              headers: new HttpHeaders({'Content-Type': 'application/json' ,
+             'token':localStorage.getItem('jwtToken')}
+            )};
+            return this.http.put<NoteModel>(this.userUrl+'note/pin/'+note.id,null,httpOptions);
 
-          // }
-
-
+          }
 
 
           public getTrashNotes() : Observable<NoteModel> | any{

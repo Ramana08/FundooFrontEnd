@@ -19,6 +19,9 @@
 
     <textarea [ngStyle]="{'backgroundColor': noteDetail.color}" class="inputDiv" matTextareaAutosize cols="40" rows="1"
     [(ngModel)]="noteDetail.title">{{noteDetail.title}}</textarea>
+    <button class="pinIcon" (click)=changePin()>
+      <img src="https://img.icons8.com/material-outlined/24/000000/pin.png">
+    </button>
 
   <!-- <button mat-button (click)="pin()">
     <svg-icon [src]="data.pin ? '../../assets/Icons/pinIcon.svg' : '../../assets/Icons/unpinIcon.svg' "> </svg-icon>
@@ -79,7 +82,7 @@
     </button>
     <button mat-button color="warn" style="left: 60%" (click)="closeAndSave(noteDetail)">close</button>
 
-    <!-- <button mat-button (click)="close()" style="left:10px">Close</button> -->
+    <button mat-button (click)="close()" style="left:10px">Close</button>
 
   </div>
  

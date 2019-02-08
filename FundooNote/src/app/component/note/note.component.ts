@@ -19,7 +19,8 @@ export class NoteComponent implements OnInit {
     this.cardupdate.currentnotes.subscribe(udnotes=>
       this.allnotes=udnotes);
       console.log("new note");
-      
+      console.log('length ',this.allnotes.length);
+
       
   }
 

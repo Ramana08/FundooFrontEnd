@@ -154,7 +154,7 @@ width: 100%
   border: none;
   outline: none;
   resize: none;
-  width: 90%;
+  width: 30%;
   font-size: 14px;
   
   
@@ -167,10 +167,14 @@ width: 100%
   
   }
   .pinIcon {
-  
+/*   
   height: 10px;
   margin-left: auto;
-  
+   */
+   border: none;
+   resize: none;
+    outline: none
+
   }
   .reminderMenu,
   .dateMenu {
