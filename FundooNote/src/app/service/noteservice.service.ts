@@ -22,7 +22,7 @@ ngOnInit()
  
 
 }
-  private userUrl = 'http://localhost:8080/fundoo/';
+  private userUrl = 'http://192.168.0.16:8080/fundoo/';
 
   public createNote(note: NoteModel) :any {
     console.log("local ",localStorage.getItem('jwtToken'))

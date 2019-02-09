@@ -8,7 +8,7 @@ import { LoginModel } from '../models/login.model';
 
 
 const httpOptions = {
-  headers: new HttpHeaders({'Access-Control-Allow-Origin ': 'http://localhost:4203','Content-Type': 'application/json' }),
+  headers: new HttpHeaders({'Access-Control-Allow-Origin ': '*','Content-Type': 'application/json' }),
  
 };
 
@@ -19,11 +19,11 @@ export class UserserviceService {
 
   constructor(private http: HttpClient) { }
 
-  private userUrl = 'http://localhost:8080/fundoo/';
+  private userUrl = 'http://192.168.0.16:8080/fundoo/';
 
   public createUser(user: RegisterModel) :any {
-    console.log(this.userUrl+'sendOtp')
-    return this.http.post<RegisterModel>(this.userUrl+'sendOtp',user);
+    console.log(this.userUrl+'register')
+    return this.http.post<RegisterModel>(this.userUrl+'register',user);
    
   }
   public verifyUser(otpUser : userOtp) : any{

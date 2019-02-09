@@ -39,9 +39,9 @@ export class ForgetPasswordComponent implements OnInit {
       if(data.statusCode== 200)
       {
 
-        this.snackBar.open('Confirm your Mail by Submit OtpVerify to your Corresponding Mail', 'otpVerfify', {
+        this.snackBar.open('Confirm your Mail by click link in your Corresponding Mail', 'userVerification', {
           duration: 2000,});
-          this.router.navigate(['/resetOtpVerify']);
+          this.router.navigate(['/login']);
       }
       else if(data.statusCode==404)
       {

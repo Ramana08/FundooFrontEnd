@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
         {
             this.snackBar.open('Successfully Register Please Confirm Your Email Address', 'otpVerfify', {
               duration: 2000,});
-              this.router.navigate(['/otpVerify']);
+              this.router.navigate(['/login']);
         }
         else if(data.statusCode==404)
         {
